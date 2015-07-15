@@ -1,0 +1,29 @@
+<ion-view view-title="Get Plucky!">
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Get Plucky!</h1>
+    <div class="buttons">
+      <a class="button button-icon icon ion-plus-round" ng-click="addEvent()">
+      </a>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="loadItems()">
+    </ion-refresher>
+    <ion-list class="item-text-wrap">
+      <div class="card" ng-repeat="event in items | orderBy: 'date': false track by event._id">
+        <div class="item item-text-wrap item-icon-right">
+          <div class="pointer" ui-sref="eventDetail({ eventId: event._id })">
+            <strong>
+              {{event.name}}
+            </strong>
+            <br/>
+            {{event.date | date:'MMMM d, y h:mm a'}}
+          </div>
+          <a class="button button-icon icon ion-edit" ng-click=addEvent(event)></a>
+        </div>
+      </div>
+    </ion-list>
+  </ion-content>
+</ion-view>

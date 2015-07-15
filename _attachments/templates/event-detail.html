@@ -1,0 +1,50 @@
+<ion-view view-title="Get Plucky!">
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">{{event.name}}</h1>
+    <div class="buttons">
+        <a class="button button-icon icon ion-android-share-alt" ng-click="showHelp()">
+        </a>
+      </div>
+  </ion-header-bar>
+  <ion-header-bar class="bar-subheader">
+    <h3 class="title">
+      {{event.date | date:'MMMM d, y @ h:mm a'}}
+    </h3>
+  </ion-header-bar>
+  <ion-content class="has-subheader">
+    <ion-refresher
+      pulling-text="Pull to refresh..."
+      on-refresh="loadItems()">
+    </ion-refresher>
+    <ion-list class="item-text-wrap">
+      <div class="item item-divider">
+        What I'm bringing
+      </div>
+      <a class="item" ng-hide="user.item" ng-click="rsvp()">
+        Want in?  Click here to RSVP.
+      </a>
+      <div class="item item-button-right" ng-hide="!user.item">
+        <strong>
+          {{user.item.name}}
+        </strong>
+        <br/>
+        {{user.item.description}}
+        <a class="button button-icon icon ion-edit" ng-click=rsvp(user.item)></a>
+      </div>
+      <div class="item item-divider">
+        What everyone is bringing
+        <span class="badge badge-positive">{{event.attendees}} RSVPs</span>
+      </div>
+      <ion-item ng-repeat="item in items | orderBy: 'created' track by item.userId">
+        <strong>
+          {{item.name}}
+        </strong>
+        <br/>
+        {{item.description}}
+        <ion-option-button class="button-positive" ng-click="setUser(item.userId)">
+          This is me!
+        </ion-option-button>
+      </ion-item>
+    </ion-list>
+  </ion-content>
+</ion-view>

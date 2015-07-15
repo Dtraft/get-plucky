@@ -1,0 +1,10 @@
+/* Empty. Add your own CSS if you like */
+
+.pointer{
+  cursor: pointer;
+}
+
+.no-cursor{
+  color: #afa;
+  text-shadow: 0px 0px 1px #fff;
+}

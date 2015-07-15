@@ -1,0 +1,33 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-positive">
+    <h1 class="title">RSVP</h1>
+    <div class="buttons">
+      <a class="button button-icon icon ion-close-round" ng-click="closeModal()"></a>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form name="form" novalidate>
+      <div class="list">
+        <label class="item item-input">
+           <span class="input-label"># guests</span>
+          <input type="number" placeholder="# of guests" ng-model="newItem.attendees" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Name{{newItem.attendees > 1 ? 's' : ''}}</span>
+          <input type="text" placeholder="Name{{newItem.attendees > 1 ? 's' : ''}}" ng-model="newItem.name" required>
+        </label>
+        <label class="item item-input">
+          <input type="text" placeholder="What you're bringing" ng-model="newItem.description">
+        </label>
+      </div>
+    </form>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="addRsvp()" ng-disabled='!form.$valid'>
+        {{originalItem._id ? "Update!" : newItem.attendees > 1 ? "We're in!!": "I'm in!!"}}
+      </button>
+      <button class="button button-block button-assertive" ng-click="removeRsvp(originalItem)" ng-hide="!newItem._id">
+        Can't make it anymore :(
+      </button>
+    </div>
+  </ion-content>
+</ion-modal-view>

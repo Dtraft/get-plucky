@@ -1,0 +1,36 @@
+<ion-modal-view>
+  <ion-header-bar class="bar-dark">
+    <h1 class="title">Create New Event</h1>
+    <div class="buttons">
+      <a class="button button-icon icon ion-close-round" ng-click="closeModal()"></a>
+    </div>
+  </ion-header-bar>
+  <ion-content>
+    <form name="form" novalidate>
+      <div class="list">
+        <label class="item item-input">
+           <span class="input-label">Event Name</span>
+          <input type="text" placeholder="Event Name" ng-model="newItem.name" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Date</span>
+          <input type="date" placeholder="Date" ng-model="newItem.date" required>
+        </label>
+        <label class="item item-input">
+          <span class="input-label">Time</span>
+          <ionic-timepicker etime="newItem.date" format="12" step="15" callback="timePickerCallback"> 
+            <input type="text" placeholder="Time" ng-model="view.displayTime" required readonly class="no-cursor">
+          </ionic-timepicker>
+        </label>
+      </div>
+    </form>
+    <div class="padding">
+      <button class="button button-block button-positive" ng-click="saveEvent()" ng-disabled='!form.$valid'>
+        {{originalItem._id ? "Update!" : "Create Event!"}}
+      </button>
+      <button class="button button-block button-assertive" ng-click="removeEvent(originalItem)" ng-hide="!newItem._id">
+        Remove Event
+      </button>
+    </div>
+  </ion-content>
+</ion-modal-view>
